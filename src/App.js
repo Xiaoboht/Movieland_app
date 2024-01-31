@@ -22,6 +22,14 @@ const App = () => {
     setMovies(data.Search);
   };
 
+  // search title (500ms after user stops typing)
+  useEffect(()=>{
+    const timerId = setTimeout(()=>{
+      searchMovies(searchTerm)
+    },500)
+    return () => clearTimeout(timerId)
+  },[searchTerm])
+
   return (
     <div className="app">
       <h1>MovieLand</h1>
